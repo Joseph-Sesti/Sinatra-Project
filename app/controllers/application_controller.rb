@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
         redirect "/login?error=You have to be logged in to do that"
       end
     end
-    
+
     def logged_in?
       !!session[:user_id]
     end
