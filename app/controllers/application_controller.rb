@@ -9,6 +9,24 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/signup' do
+    if !session[:user_id]
+      erb :signup
+    else
+      redirect to '/users/account'
+    end
+  end
+
+  post '/signup' do
+    if params[:username] == "" || params[:password] == ""
+      redirect to '/signup'
+    else
+      @user = User.create(:username => params[:username], :password => params[:password])
+      session[:user_id] = @user.id
+      redirect '/login'
+    end
+  end
+
   helpers do
     def redirect_if_not_logged_in
       if !logged_in?

@@ -6,27 +6,9 @@ class UserController < ApplicationController
 
     @user = User.find(params[:id])
     if !@user.nil? && @user == current_user
-      erb :'users/show'
+      erb :users/show
     else
       redirect '/systems'
-    end
-  end
-
-  get '/signup' do
-    if !session[:user_id]
-      erb :'users/new'
-    else
-      redirect to '/videogames'
-    end
-  end
-
-  post '/signup' do
-    if params[:username] == "" || params[:password] == ""
-      redirect to '/signup'
-    else
-      @user = User.create(:username => params[:username], :password => params[:password])
-      session[:user_id] = @user.id
-      redirect '/'
     end
   end
 
@@ -35,17 +17,18 @@ class UserController < ApplicationController
     if !session[:user_id]
       erb :'users/login'
     else
-      redirect '/'
+      redirect '/account'
     end
   end
 
   post '/login' do
-    user = User.find_by(:username => params[:username])
-    if user && user.authenticate(params[:password])
+    @user = User.find_by(:username => params[:username])
+    binding.pry
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/bags"
+      redirect '/account'
     else
-      redirect to '/signup'
+      redirect '/signup'
     end
   end
 
@@ -54,7 +37,7 @@ class UserController < ApplicationController
       session.destroy
       redirect to '/login'
     else
-      redirect to '/index'
+      redirect to '/'
     end
   end
 end
