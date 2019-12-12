@@ -1,0 +1,6 @@
+<% @systems.each do |system| %>
+  <%= system.name %> </br>
+  <%= system.manufacturer %> </br>
+  <%= system.release_date %> </br>
+  <a href="/systems/<%=system.id%>/edit">Edit</a>
+  <% end %>

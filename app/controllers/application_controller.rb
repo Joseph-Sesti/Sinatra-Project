@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
     if !session[:user_id]
       erb :signup
     else
-      redirect to '/users/account'
+      redirect to '/account'
     end
   end
 
@@ -24,6 +24,26 @@ class ApplicationController < Sinatra::Base
       @user = User.create(:username => params[:username], :password => params[:password])
       session[:user_id] = @user.id
       redirect '/login'
+    end
+  end
+
+  get '/login' do
+    @error_message = params[:error]
+    if !session[:user_id]
+      erb :'users/login'
+    else
+      redirect '/account'
+    end
+  end
+
+  post '/login' do
+    @user = User.create(:username => params[:username], :password => params[:password])
+    # binding.pry
+    if @user && @user.authorized?(params[:password])
+      session[:user_id] = user.id
+      redirect '/account'
+    else
+      redirect to '/signup'
     end
   end
 
@@ -42,4 +62,11 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
   end
+
+  get '/account' do
+    'Hello world'
+  end
+
+  # post '/account'
+
 end
