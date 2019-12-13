@@ -38,7 +38,6 @@ class ApplicationController < Sinatra::Base
 
   post '/login' do
     @user = User.create(:username => params[:username], :password => params[:password])
-    # binding.pry
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect '/account'
@@ -64,9 +63,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/account' do
-    'Hello world'
+    erb :account
   end
 
-  # post '/account'
+  post '/account' do
+
+  end
+
+  
 
 end

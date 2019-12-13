@@ -3,7 +3,7 @@ class VideogameSystemsController < ApplicationController
   get '/systems' do
     redirect_if_not_logged_in
     @system = System.all
-    erb :system/index
+    erb :'systems/index'
   end
 
   # post '/system' do
@@ -11,9 +11,8 @@ class VideogameSystemsController < ApplicationController
   #   unless
   # end
 
-  get 'system/new' do
-    redirect_if_not_logged_in
-    erb :system/new
+  get '/systems/new' do
+    erb :'systems/new'
   end
 
   post 'system/new'do
@@ -23,6 +22,6 @@ class VideogameSystemsController < ApplicationController
   get 'system/id' do
     redirect_if_not_logged_in
     @system = System.find(params[:id])
-    erb :system/show
+    erb :'system/show'
   end
 end
