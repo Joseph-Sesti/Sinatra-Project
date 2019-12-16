@@ -65,11 +65,4 @@ class ApplicationController < Sinatra::Base
   get '/account' do
     erb :account
   end
-
-  post '/account' do
-
-  end
-
-  
-
 end

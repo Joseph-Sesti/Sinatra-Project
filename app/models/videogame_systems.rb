@@ -1,2 +1,3 @@
-class VideogameSystems < ActiveRecord::Base
+class VideogameSystem < ActiveRecord::Base
+  has_many :videogames
 end

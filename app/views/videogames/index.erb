@@ -1,7 +1,4 @@
 <% @videogames.each do |game| %>
   <%= game.title %> </br>
-  <%= game.system %> </br>
-  <%= game.publisher %> </br>
-  <%= game.release_date %> </br>
   <a href="/videogames/<%=game.id%>/edit">Edit</a>
-  <% end %>
+<% end %>
