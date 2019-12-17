@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_210940) do
     t.string "release_date"
     t.string "publisher"
     t.integer "user_id"
+    t.integer "videogame_system_id"
   end
 
 end

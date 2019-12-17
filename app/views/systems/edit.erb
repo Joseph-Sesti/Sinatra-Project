@@ -2,14 +2,16 @@
 
 <form action="/systems/<%=@system.id %>" method="POST">
 
+  <input id="hidden" type="hidden" name="_method" value="patch">
+
   <label> System Name </label>
-  <input type="text" name="name" value="<%=@system.name%>"> </br>
+  <input type="text" name="name" value="<%=@system.name%>"> <br>
 
-  <label Release Date </label>
-  <input type="text" name="release_date" value="<%="@system.release_date%>"> </br>
+  <label> Release Date </label>
+  <input type="text" name="release_date" value="<%=@system.release_date%>"> <br>
 
-  <label Manufacturer </label>
-  <input type="text" name="release_date" value="<%="@system.manufacturer%>"> </br>
+  <label> Manufacturer </label>
+  <input type="text" name="release_date" value="<%="@system.manufacturer%>"> <br>
 
-  <input type="submit" value="UPDATE">
+  <input> type="submit" value="UPDATE">
 </form>
