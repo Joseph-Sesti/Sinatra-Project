@@ -2,12 +2,8 @@ class VideogameSystemsController < ApplicationController
 
   get '/systems' do
     # redirect_if_not_logged_in
-    @videogame_system = System.all
+    @systems = VideogameSystem.all
     erb :'systems/index'
-  end
-
-  post '/system' do
-
   end
 
   get '/systems/new' do
@@ -18,17 +14,17 @@ class VideogameSystemsController < ApplicationController
     @system = VideogameSystem.create(:name => params[:name],
       :release_date => params[:release_date],
       :manufacturer => params[:manufacturer])
-    redirect to "/systems/show"
+    redirect to "/systems/#{@system.id}"
   end
 
-  get 'system/:id' do
+  get '/systems/:id' do
     # redirect_if_not_logged_in
-    @system = VideogameSystem.find(params[:id])
-    erb :'system/show'
+    @system = VideogameSystem.find_by_id(params[:id])
+    erb :'systems/show'
   end
 
   get '/systems/:id/edit' do
-    @systems = VideogameSystem.find_by_id(params[:id])
+    @system = VideogameSystem.find_by_id(params[:id])
     erb :'systems/edit'
   end
 
@@ -39,5 +35,11 @@ class VideogameSystemsController < ApplicationController
     @system.manufacturer = params[:manufacturer]
     @system.save
     redirect to "/systems/#{@system.id}"
+  end
+
+  delete '/systems/:id' do
+    @system = VideogameSystem.find_by_id(params[:id])
+    @system.delete
+    redirect to '/systems'
   end
 end

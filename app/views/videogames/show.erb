@@ -2,4 +2,8 @@
 <%= @videogame.system %></br>
 <%= @videogame.publisher %></br>
 <%= @videogame.release_date %></br>
-Videogame: <a href="/videogames/"
+<a href="/videogames">Back to collection</a>
+<form action="/videogames/<% @videogame.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>

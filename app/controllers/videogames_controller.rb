@@ -12,7 +12,7 @@ class VideogamesController < ApplicationController
 
   post '/videogames/new' do
     @videogame = Videogame.create(:title => params[:title],
-      :videogame_system => params[:videogame_system],
+      :system => params[:system],
       :publisher => params[:publisher],
       :release_date => params[:release_date])
     redirect to "/videogames/#{@videogame.id}"
@@ -31,11 +31,16 @@ class VideogamesController < ApplicationController
   patch '/videogames/:id' do
     @videogame = Videogame.find_by_id(params[:id])
     @videogame.title = params[:title]
-    @videogame.videogame_system = params[:videogame_system]
+    @videogame.system = params[:system]
     @videogame.publisher = params[:publisher]
     @videogame.release_date = params[:release_date]
     @videogame.save
     redirect to "/videogames/#{@videogame.id}"
   end
 
+  delete '/videogames/:id' do
+    @videogame = Videogame.find_by_id(params[:id])
+    @videogame.delete
+    redirect to '/videogames'
+  end
 end
