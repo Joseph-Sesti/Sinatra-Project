@@ -38,8 +38,8 @@ class VideogameSystemsController < ApplicationController
   end
 
   delete '/systems/:id' do
-    @system = VideogameSystem.find_by_id(params[:id])
-    @system.delete
+    system = VideogameSystem.find_by_id(params[:id])
+    system.delete
     redirect to '/systems'
   end
 end

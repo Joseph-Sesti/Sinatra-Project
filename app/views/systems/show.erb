@@ -1,8 +1,7 @@
 <%= @system.name %></br>
 <%= @system.release_date %></br>
 <%= @system.manufacturer %></br>
+<% @system.videogames.each do |videogame| %>
+  <%= videogame.title %>
+<% end %>
 <a href="/systems">Back to collection</a>
-<form action="/systems/<% @system.id %>" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
-</form>
