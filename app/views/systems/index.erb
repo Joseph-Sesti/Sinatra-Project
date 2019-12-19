@@ -1,4 +1,6 @@
 <% @systems.each do |system| %>
-  <a href="/systems/<%=system.id%>/edit">Edit</a> <%= system.name %> </br>
+  <%= system.name %> </br>
+  <%= system.manufacturer %> </br>
+  <%= system.release_date %> </br>
+  <a href="/systems/<%=system.id%>/edit">Edit</a>
   <% end %>
-<a href="/account">Return to home page</a>

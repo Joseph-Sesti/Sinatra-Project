@@ -1,4 +1,7 @@
 <% @videogames.each do |game| %>
-  <a href="/videogames/<%=game.id%>/edit">Edit</a> <%= game.title %> </br>
-<% end %>
-<a href="/account">Return to home page</a>
+  <%= game.title %> </br>
+  <%= game.system %> </br>
+  <%= game.publisher %> </br>
+  <%= game.release_date %> </br>
+  <a href="/videogames/<%=game.id%>/edit">Edit</a>
+  <% end %>

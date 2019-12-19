@@ -1,45 +1,27 @@
 class VideogameSystemsController < ApplicationController
 
   get '/systems' do
-    # redirect_if_not_logged_in
-    @systems = VideogameSystem.all
+    redirect_if_not_logged_in
+    @system = System.all
     erb :'systems/index'
   end
+
+  # post '/system' do
+  #   redirect_if_not_logged_in
+  #   unless
+  # end
 
   get '/systems/new' do
     erb :'systems/new'
   end
 
-  post '/systems/new' do
-    @system = VideogameSystem.create(:name => params[:name],
-      :release_date => params[:release_date],
-      :manufacturer => params[:manufacturer])
-    redirect to "/systems/#{@system.id}"
+  post 'system/new'do
+
   end
 
-  get '/systems/:id' do
-    # redirect_if_not_logged_in
-    @system = VideogameSystem.find_by_id(params[:id])
-    erb :'systems/show'
-  end
-
-  get '/systems/:id/edit' do
-    @system = VideogameSystem.find_by_id(params[:id])
-    erb :'systems/edit'
-  end
-
-  patch '/systems/:id' do
-    @system = VideogameSystem.find_by_id(params[:id])
-    @system.name = params[:name]
-    @system.release_date = params[:release_date]
-    @system.manufacturer = params[:manufacturer]
-    @system.save
-    redirect to "/systems/#{@system.id}"
-  end
-
-  delete '/systems/:id' do
-    system = VideogameSystem.find_by_id(params[:id])
-    system.delete
-    redirect to '/systems'
+  get 'system/id' do
+    redirect_if_not_logged_in
+    @system = System.find(params[:id])
+    erb :'system/show'
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_210940) do
+ActiveRecord::Schema.define(version: 4) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2019_12_16_210940) do
     t.string "name"
     t.string "release_date"
     t.string "manufacturer"
-    t.integer "user_id"
   end
 
   create_table "videogames", force: :cascade do |t|
@@ -30,8 +29,6 @@ ActiveRecord::Schema.define(version: 2019_12_16_210940) do
     t.string "system"
     t.string "release_date"
     t.string "publisher"
-    t.integer "user_id"
-    t.integer "videogame_system_id"
   end
 
 end
